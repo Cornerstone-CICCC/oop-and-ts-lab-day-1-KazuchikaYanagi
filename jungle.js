@@ -33,19 +33,20 @@ class Animal {
   }
 
   attack(target) {
-    // const restEnergy = Animal.remainingAnimals();
-    this.energy -= 10;
-    target.energy -= 10;
+    if (this.energy > 0 && target.energy > 0) {
+      this.energy -= 10;
+      target.energy -= 10;
 
-    if (this.#energy > 0 && target.energy <= 0) {
-      console.log(`${this.#name} wins ${target.name}!`);
-      Animal.remainingAnimals -= 1;
-    } else if (this.#energy <= 0 && target.energy > 0) {
-      console.log(`${target.name} wins ${this.#name}!`);
-      Animal.remainingAnimals -= 1;
-    } else if (this.#energy === 0 && target.energy === 0) {
-      console.log(`Both dead at the same time...`);
-      Animal.remainingAnimals -= 2;
+      if (this.energy > 0 && target.energy <= 0) {
+        console.log(`${this.name} wins ${target.name}!`);
+        Animal.remainingAnimals -= 1;
+      } else if (this.energy <= 0 && target.energy > 0) {
+        console.log(`${target.name} wins! ${this.name} is out of energy!`);
+        Animal.remainingAnimals -= 1;
+      } else if (this.energy <= 0 && target.energy <= 0) {
+        console.log(`Both enemies are down...`);
+        Animal.remainingAnimals -= 2;
+      }
     }
   }
 
@@ -58,7 +59,6 @@ class Animal {
 }
 
 class Bird extends Animal {
-  //   #energy = 100;
   #energy;
   #canFly;
 
@@ -77,27 +77,28 @@ class Bird extends Animal {
   }
 
   attack(target) {
-    this.energy -= 20;
-    target.energy -= 20;
-    console.log(`${this.name} swoops in to attack ${target.name}!`);
-    console.log(`${target.name}'s energy: ${target.energy}`);
-    console.log(`${this.name}'s energy: ${this.energy}`);
+    if (this.energy > 0 && target.energy > 0) {
+      this.energy -= 20;
+      target.energy -= 20;
+      console.log(`${this.name} swoops in to attack ${target.name}!`);
+      console.log(`${target.name}'s energy: ${target.energy}`);
+      console.log(`${this.name}'s energy: ${this.energy}`);
 
-    if (this.energy > 0 && target.energy <= 0) {
-      console.log(`${this.name} wins ${target.name}!`);
-      Animal.remainingAnimals -= 1;
-    } else if (this.energy <= 0 && target.energy > 0) {
-      console.log(`${target.name} wins ${this.name}!`);
-      Animal.remainingAnimals -= 1;
-    } else if (this.energy === 0 && target.energy === 0) {
-      console.log(`Both dead at the same time...`);
-      Animal.remainingAnimals -= 2;
+      if (this.energy > 0 && target.energy <= 0) {
+        console.log(`${this.name} wins! ${target.name} is out of energy!`);
+        Animal.remainingAnimals -= 1;
+      } else if (this.#energy <= 0 && target.energy > 0) {
+        console.log(`${target.name} wins! ${this.name} is out of energy!`);
+        Animal.remainingAnimals -= 1;
+      } else if (this.#energy <= 0 && target.energy <= 0) {
+        console.log(`Both enemies are down...`);
+        Animal.remainingAnimals -= 2;
+      }
     }
   }
 }
 
 class Mammal extends Animal {
-  //   #energy = 200;
   #energy;
   #furColor;
 
@@ -105,7 +106,6 @@ class Mammal extends Animal {
     super(name, species, 200);
 
     this.#energy = energy;
-    this.#energy = energy * 2;
     this.#furColor = furColor;
   }
 
@@ -117,23 +117,23 @@ class Mammal extends Animal {
   }
 
   attack(target) {
-    // this.energy(200);
+    if (this.energy > 0 && target.energy > 0) {
+      this.energy -= 50;
+      target.energy -= 50;
+      console.log(`${this.name} lunges to attack ${target.name}!`);
+      console.log(`${target.name}'s energy: ${target.energy}`);
+      console.log(`${this.name}'s energy: ${this.energy}`);
 
-    this.energy -= 50;
-    target.energy -= 50;
-    console.log(`${this.name} lunges to attack ${target.name}!`);
-    console.log(`${target.name}'s energy: ${target.energy}`);
-    console.log(`${this.name}'s energy: ${this.energy}`);
-
-    if (this.energy > 0 && target.energy <= 0) {
-      console.log(`${this.name} wins ${target.name}!`);
-      Animal.remainingAnimals = 2;
-    } else if (this.energy <= 0 && target.energy > 0) {
-      console.log(`${target.name} wins ${this.name}!`);
-      Animal.remainingAnimals = 2;
-    } else if (this.energy === 0 && target.energy === 0) {
-      console.log(`Both dead at the same time...`);
-      Animal.remainingAnimals -= 1;
+      if (this.energy > 0 && target.energy <= 0) {
+        console.log(`${this.name} wins! ${target.name} is out of energy!`);
+        Animal.remainingAnimals -= 1;
+      } else if (this.energy <= 0 && target.energy > 0) {
+        console.log(`${target.name} wins! ${this.name} is out of energy!`);
+        Animal.remainingAnimals -= 1;
+      } else if (this.energy <= 0 && target.energy <= 0) {
+        console.log(`Both enemies are down...`);
+        Animal.remainingAnimals -= 2;
+      }
     }
   }
 
@@ -165,21 +165,23 @@ class Reptile extends Animal {
   }
 
   attack(target) {
-    this.energy -= 30;
-    target.energy -= 30;
-    console.log(`${this.name} coblas in to attack ${target.name}!`);
-    console.log(`${target.name}'s energy: ${target.energy}`);
-    console.log(`${this.name}'s energy: ${this.energy}`);
+    if (this.energy > 0 && target.energy > 0) {
+      this.energy -= 30;
+      target.energy -= 30;
+      console.log(`${this.name} coblas in to attack ${target.name}!`);
+      console.log(`${target.name}'s energy: ${target.energy}`);
+      console.log(`${this.name}'s energy: ${this.energy}`);
 
-    if (this.energy > 0 && target.energy <= 0) {
-      console.log(`${this.name} wins ${target.name}!`);
-      Animal.remainingAnimals -= 1;
-    } else if (this.energy <= 0 && target.energy > 0) {
-      console.log(`${target.name} wins ${this.name}!`);
-      Animal.remainingAnimals -= 1;
-    } else if (this.energy === 0 && target.energy === 0) {
-      console.log(`Both dead at the same time...`);
-      Animal.remainingAnimals -= 2;
+      if (this.energy > 0 && target.energy <= 0) {
+        console.log(`${this.name} wins! ${target.name} is out of energy!`);
+        Animal.remainingAnimals -= 1;
+      } else if (this.energy <= 0 && target.energy > 0) {
+        console.log(`${target.name} wins! ${this.name} is out of energy!`);
+        Animal.remainingAnimals -= 1;
+      } else if (this.energy <= 0 && target.energy <= 0) {
+        console.log(`Both enemies are down...`);
+        Animal.remainingAnimals -= 2;
+      }
     }
   }
 
@@ -203,7 +205,7 @@ const lion = new Mammal("Lion", "Big Cat", "Golden");
 console.log(
   `Name: ${lion.name}, Species: ${lion.species}, Fur Color: ${lion.furColor}`
 );
-// console.log(lion.energy);
+console.log(lion.energy);
 
 const snake = new Reptile("Snake", "Serpent", true);
 console.log(
@@ -216,8 +218,19 @@ console.log("\n--- Attacks ---");
 eagle.attack(lion);
 lion.attack(snake);
 lion.attack(snake);
+lion.attack(snake);
+console.log(" ");
 
 // Display the remaining number of animals with energy
+console.log(`Remaining animals with energy: ${Animal.remainingAnimals}`);
+console.log(" ");
+
+eagle.attack(lion);
+eagle.attack(lion);
+eagle.attack(lion);
+eagle.attack(lion);
+console.log(" ");
+
 console.log(`Remaining animals with energy: ${Animal.remainingAnimals}`);
 
 // Example eating
